@@ -10,29 +10,25 @@ export function generateSecurityAudit(account: Account) {
     (total, h) => total + h.penaltyFactor,
     0
   );
-  console.log("Total Weight =>");
-  console.log(totalWeight);
   const globalReport: GlobalHeuristicReport = heuristics.reduce(
     (globalReport, heuristic) => {
       let report: HeuristicReport = heuristic.handler(account);
       globalReport.reports.push(report);
       globalReport.score +=
-        ((report.penalty / account.operations.length) * totalWeight) / 100.0;
-      console.log("report.penalty / account.operations.length =>");
-      console.log(report.penalty / account.operations.length);
+        ((report.penalty / account.operations.length) * heuristic.penaltyFactor) / totalWeight;
       return globalReport;
     },
     {
+      score: 0,
       reports: [],
+      level: "best",
     }
   );
 
-  if (globalReport.score > 60) {
+  if (globalReport.score > 0.6) {
     globalReport.level = "good";
-  } else if (globalReport.score > 30) {
+  } else if (globalReport.score > 0.3) {
     globalReport.level = "better";
-  } else {
-    globalReport.level = "best";
   }
   console.log("REPORT: ", globalReport);
   return globalReport;

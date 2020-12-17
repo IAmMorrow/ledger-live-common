@@ -8,6 +8,7 @@ import { outputValue1000x } from "./outputValue1000x";
 import { simpleCoinjoin } from "./simpleCoinjoin";
 import { samouraiWhirlpool } from "./samouraiWhirlpool";
 import { scriptTypes } from "./scriptTypes";
+import { knownCoinbase } from "./knownCoinbase";
 
 export const heuristics: Heuristic[] = [
   {
@@ -43,6 +44,11 @@ export const heuristics: Heuristic[] = [
   {
     id: "script-types",
     handler: scriptTypes,
+    penaltyFactor: 2,
+  },
+  {
+    id: "known-coinbase",
+    handler: knownCoinbase,
     penaltyFactor: 0,
   },
 ];
