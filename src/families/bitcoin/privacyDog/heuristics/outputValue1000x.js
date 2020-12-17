@@ -18,9 +18,26 @@ export const outputValue1000x: HeuristicHandler = (account: Account) => {
         out2.value.div(out1.value) > 1000
       ) {
         report.operations.push(op);
+        report.penalty += 4;
+      } else if (
+        out1.value.div(out2.value) > 500 ||
+        out2.value.div(out1.value) > 500
+      ) {
+        report.operations.push(op);
+        report.penalty += 3;
+      } else if (
+        out1.value.div(out2.value) > 100 ||
+        out2.value.div(out1.value) > 100
+      ) {
+        report.operations.push(op);
+        report.penalty += 2;
+      } else if (
+        out1.value.div(out2.value) > 25 ||
+        out2.value.div(out1.value) > 25
+      ) {
+        report.operations.push(op);
         report.penalty += 1;
       }
-
       return report;
     },
     {
