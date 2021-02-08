@@ -15,7 +15,9 @@ export function generateSecurityAudit(account: Account) {
       let report: HeuristicReport = heuristic.handler(account);
       globalReport.reports.push(report);
       globalReport.score +=
-        ((report.penalty / account.operations.length) * heuristic.penaltyFactor) / totalWeight;
+        ((report.penalty / account.operations.length) *
+          heuristic.penaltyFactor) /
+        totalWeight;
       return globalReport;
     },
     {

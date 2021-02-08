@@ -20,12 +20,12 @@ export const heuristics: Heuristic[] = [
   {
     id: "receive-address-reuse",
     handler: receiveAddressReuse,
-    penaltyFactor: 4,
+    penaltyFactor: 1.5,
   },
   {
     id: "send-address-reuse",
     handler: sendAddressReuse,
-    penaltyFactor: 4,
+    penaltyFactor: 1.5,
   },
   {
     id: "output-value-1000x",
@@ -45,7 +45,7 @@ export const heuristics: Heuristic[] = [
   {
     id: "script-types",
     handler: scriptTypes,
-    penaltyFactor: 2,
+    penaltyFactor: 1.5,
   },
   {
     id: "known-coinbase",
